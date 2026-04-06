@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ScrapXpress - Free Scrap Metal Pickup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial; padding: 20px; max-width: 500px; margin: auto; }
+    input, select { width: 100%; padding: 10px; margin: 8px 0; }
+    button { padding: 12px; background-color: #4CAF50; color: white; border: none; width: 100%; font-size: 16px; }
+    h1 { color: #2E8B57; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>ScrapXpress</h1>
+  <p style="text-align:center;">Request your free scrap metal pickup today!</p>
+  <form id="pickupForm">
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="tel" id="phone" placeholder="Your Phone Number" required>
+    <input type="text" id="address" placeholder="Pickup Address" required>
+    <input type="text" id="scrapType" placeholder="Type of Scrap Metal" required>
+    <input type="datetime-local" id="dateTime" required>
+    <button type="submit">Submit Request</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('pickupForm');
+    const smsNumber = "5623254586";
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
+      const scrapType = document.getElementById('scrapType').value;
+      const dateTime = document.getElementById('dateTime').value;
+
+      const smsBody = `ScrapXpress - New Scrap Pickup Request:%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}%0AScrapType: ${scrapType}%0ADateTime: ${dateTime}`;
+      
+      window.location.href = `sms:${smsNumber}?body=${smsBody}`;
+    });
+  </script>
+</body>
+</html>
